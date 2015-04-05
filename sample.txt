@@ -1,3 +1,4 @@
 Monkey git
 http://goo.gl/zJh1y
 added line
+pull リモートリポジトリの内容を取得する
