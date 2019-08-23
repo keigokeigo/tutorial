@@ -1,0 +1,16 @@
+- hosts: tutorial
+# connection: docker
+  become: true
+  become_method: sudo
+  tasks:
+    - name: create directory
+      file:
+        path: /var/tmp/foo
+        state: directory
+        mode: 0755
+
+    - name: create file
+      file:
+        path: /var/tmp/foo/test.txt
+        state: touch
+        mode: 0644

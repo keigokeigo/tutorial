@@ -1,0 +1,29 @@
+version: '2'
+  
+services:
+  builder:
+    build: .
+    restart: always
+    network_mode: "bridge"
+    tty: true
+    privileged: true
+    links:
+      - node1
+      - node2
+    volumes:
+      - ./playbook:/playbook
+      - ./etc/ansible/ansible.cfg:/etc/ansible/ansible.cfg
+#   command: systemctl start sshd
+  node1:
+    build: .
+    restart: always
+    network_mode: "bridge"
+    tty: true
+    privileged: true
+
+  node2:
+    build: .
+    restart: always
+    network_mode: "bridge"
+    tty: true
+    privileged: true
