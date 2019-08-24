@@ -14,3 +14,25 @@
         path: /var/tmp/foo/test.txt
         state: touch
         mode: 0644
+
+    - name: add groups
+      group: name=k5ito gid=4029
+
+    - name: add user
+      user:
+        name: k5ito
+        shell: /bin/bash
+        uid: 4029
+        group: k5ito
+        groups: wheel
+        append: yes
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+
+    - name: add authorized_keys
+      file: dest=/home/k5ito/.ssh/authorized_keys state=touch owner=k5ito group=k5ito mode=600
+
+# んー、srcの相対パス指定の仕方、わからず。
+#   - name: add id_rsa.pub
+#     file: src=authorized_keys dest=/home/k5ito/.ssh/authorized_keys owner=k5ito group=k5ito mode=600
+ 
